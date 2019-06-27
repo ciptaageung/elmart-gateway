@@ -1,0 +1,37 @@
+#!/usr/bin/env groovy
+
+node {
+
+	def WAR_PACKAGE = "${SERVICE}-${VERSION}.war"
+	def WORKSPACE = "/devnas/dist-tomcat/workspace-elmart/${SERVICE}"
+	def BUILD_DIR = "${WORKSPACE}/target"
+	def DEPLOY_DIR = "/devnas/stage/deployment-emart/${SERVICE}"
+	
+	sh "mkdir -p ${WORKSPACE}"
+
+    ws("${WORKSPACE}") {
+    
+	    stage('checkout') {
+	        checkout scm
+	    }
+	
+	    stage('check java') {
+	        sh "java -version"
+	    }
+	
+	    stage('clean') {
+	        sh "chmod +x mvnw"
+	        sh "./mvnw clean"
+	    }
+	
+	    stage('packaging') {
+	        sh "./mvnw clean package -Pdev,swagger,webpack -DskipTests -Dapp.version=${VERSION}"
+	        archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+	    }
+	    
+	    stage('deploy') {
+	    	sh "cp -rf ${BUILD_DIR}/${WAR_PACKAGE} ${DEPLOY_DIR}/target/${WAR_PACKAGE}"
+	    	sh "sh /home/tomcat/scripts/build-elmart-msa.sh ${SERVER_NAME} ${SERVICE}"
+	    }
+	}
+}

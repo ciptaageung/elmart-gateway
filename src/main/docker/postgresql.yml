@@ -1,0 +1,11 @@
+version: '2'
+services:
+  elmartgateway-postgresql:
+    image: postgres:11.2
+    # volumes:
+    #     - ~/volumes/jhipster/elmartgateway/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=elmartgateway
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

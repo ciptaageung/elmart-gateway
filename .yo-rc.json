@@ -1,0 +1,36 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "id.co.elevenia.mart.gateway"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "gateway",
+    "baseName": "elmartgateway",
+    "packageName": "id.co.elevenia.mart.gateway",
+    "packageFolder": "id/co/elevenia/mart/gateway",
+    "serverPort": "8080",
+    "authenticationType": "uaa",
+    "uaaBaseName": "elmartuaa",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "clientFramework": "react",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientTheme": "none"
+  }
+}
